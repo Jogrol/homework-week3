@@ -5,7 +5,7 @@ export default function ModelDetails(props) {
     if (props.model.lenght === 0) return "nothing"
         return (
             <div>
-                <h1>Computer Models</h1>
+                <h3>Computer Models</h3>
                     { props.model.map(model => 
                     <ul>
                         <li key={model.name}><b>{ model.name }</b></li>

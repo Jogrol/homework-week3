@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ModelDetailsContainer from './ModelDetailsContainer';
+import ModelDetailsContainer from './components/ModelDetailsContainer';
 import store from './store'
 
 const data = {
