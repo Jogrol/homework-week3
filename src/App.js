@@ -26,45 +26,37 @@ const data = {
   }
 }
 
-
-
 class App extends Component {
 
- 
   constructor(props) {
     super(props);
-    this.state = {
-      models: []}
-    }
+    this.state = []
+    
+  }
  
   updateSection = (event) => {
-   
-    const model = event.target.value;
-    console.log(model)
     this.setState({
-      model: model
+      model: event.target.value
     });
-    }
-    
+  }
   
   handleSubmit = (event) => {
     event.preventDefault()
-
-    // console.log(this.state.model)
-    // console.log(data[`${this.state.model}`].year)
     this.addModel(
       {
+        name: this.state.model,
         manufacturer: data[`${this.state.model}`].manufacturer,
         year: data[`${this.state.model}`].year,
         origin: data[`${this.state.model}`].origin,
       }
     )
   }
-  addModel = (manufacturer,year,origin) => {
-    console.log(manufacturer,year,origin)
+
+  addModel = (name,manufacturer,year,origin) => {
     store.dispatch( {
       type: 'ADD_MODEL',
-      payload:  
+      payload:
+        name,  
         manufacturer,
         year,
         origin  
@@ -75,16 +67,15 @@ class App extends Component {
   render() {
     
   const renderData = (item) => {
-
       const model = item[0]
       const year = data[`${model}`].year
 
       return  <option key={model} value={model}>
             {model} ({year})
             </option>
-  }
-    
-    return (
+      }
+
+      return (
       <div className="App">
         <form onSubmit={this.handleSubmit}>
           <select value={this.state.value} onChange={this.updateSection}>
@@ -95,20 +86,12 @@ class App extends Component {
         </form>
         <ModelDetailsContainer />
       </div>
-    );
+    )
   }
-
 }
-
-
 
 const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-    models: state
-  }
+  return {models: state}
 }
-
-
 
 export default connect(mapStateToProps,{ModelDetailsContainer})(App)
