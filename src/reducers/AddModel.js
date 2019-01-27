@@ -2,7 +2,7 @@ export default (state = [], action = {}) => {
     switch (action.type) {
     case 'ADD_MODEL':
     return [
-      ...state,
+        ...state,
       action.payload
     ]
     default:

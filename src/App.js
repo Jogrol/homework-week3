@@ -52,7 +52,7 @@ class App extends Component {
 
     // console.log(this.state.model)
     // console.log(data[`${this.state.model}`].year)
-    this.props.addModel(
+    this.addModel(
       {
         manufacturer: data[`${this.state.model}`].manufacturer,
         year: data[`${this.state.model}`].year,
@@ -60,13 +60,15 @@ class App extends Component {
       }
     )
   }
-  addModel = (model) => {
-    console.log(model)
+  addModel = (manufacturer,year,origin) => {
+    console.log(manufacturer,year,origin)
     this.props.dispatch({
       type: 'ADD_MODEL',
-      payload: {
-        ...this.state
-      }
+      payload:  
+        manufacturer,
+        year,
+        origin  
+      
     })
   }
 
