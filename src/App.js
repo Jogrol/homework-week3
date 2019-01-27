@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-
+import ModelDetailsContainer from './ModelDetailsContainer';
+import store from './store'
 
 const data = {
   "Ivel Z3": {
@@ -62,7 +62,7 @@ class App extends Component {
   }
   addModel = (manufacturer,year,origin) => {
     console.log(manufacturer,year,origin)
-    this.props.dispatch({
+    store.dispatch( {
       type: 'ADD_MODEL',
       payload:  
         manufacturer,
@@ -93,11 +93,15 @@ class App extends Component {
           </select>
           <input type="submit" value="Add" />
         </form>
+        <ModelDetailsContainer />
       </div>
     );
   }
 
 }
+
+
+
 const mapStateToProps = (state) => {
   console.log(state)
   return {
@@ -105,4 +109,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App)
+
+
+export default connect(mapStateToProps,{ModelDetailsContainer})(App)
